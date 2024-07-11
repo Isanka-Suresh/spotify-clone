@@ -6,13 +6,11 @@ import PlaylistCard from "../components/PlaylistCard";
 import ShowCard from "../components/ShowCard";
 import { LinearGradient } from 'expo-linear-gradient';
 import TrendingCard from "../components/TrendingCard";
-import { trendingData,showsData, mixData, cardData } from "../data/Data";
+import { trendingData,showsData, mixData, cardData, showsDataCopy } from "../data/Data";
 import MixCard from "../components/MixCard";
+import LibraryHeader from "../components/LibraryHeader";
 
-
-const HomeScreen = ({ navigation }) => {
- 
-
+const LibraryScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -20,46 +18,29 @@ const HomeScreen = ({ navigation }) => {
       >
       <ScrollView>
       <View style={styles.subContainer}>
-      <Header />
-      <View style={styles.cardContainer}>
-        {cardData.map(dat=>
-        <PlaylistCard key={dat.title} title={dat.title} img={dat.img} />
-        )}
-      </View>
+      <LibraryHeader />
       <View style={styles.showContainer}>
-        <Text style={styles.text}>Shows to try</Text>
-        <ScrollView horizontal={true}>
+        <View style={styles.cardContainer}>
+        <ScrollView>
           {showsData.map(dat => 
           <ShowCard key={dat.title} title={dat.title} artists={dat.artists} img={dat.img} />
             )}
         </ScrollView>
-      </View>
-      <View style={styles.bestContainer}>
-        <Text style={styles.text}>Top Mixes</Text>
-        <ScrollView horizontal={true}>
-          {mixData.map(dat =>
-            <MixCard key={dat.title} title={dat.title} artists={dat.artists} img={dat.img}/>
-          )}
+        <ScrollView>
+          {showsDataCopy.map(dat => 
+          <ShowCard key={dat.title} title={dat.title} artists={dat.artists} img={dat.img} />
+            )}
         </ScrollView>
-      </View>
-      <View style={styles.bestContainer}>
-        <Text style={styles.text}>Trending Now</Text>
-        <ScrollView horizontal={true}>
-          {
-            trendingData.map(dat=>
-              <TrendingCard key={dat.title} title={dat.title} artists={dat.artists} img={dat.img}/>
-              )
-          }
-        </ScrollView>
+        </View>
       </View>
       </View>
         </ScrollView>
         </LinearGradient>
     </SafeAreaView>
-  );
-};
+  )
+}
 
-export default HomeScreen;
+export default LibraryScreen
 
 const styles = StyleSheet.create({
   container: {
@@ -74,10 +55,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
-    marginTop: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    maxHeight: 210,
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
   },
   text: {
     color: "white",
@@ -94,4 +73,4 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop:30,
   }
-});
+})
