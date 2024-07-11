@@ -24,7 +24,7 @@ const SearchScreen = () => {
             <View style={styles.topicContainer}>
               <Text style={styles.text}>Browse All</Text>
             </View>
-            <View style={styles.cardContainer}>
+            <View style={styles.cardContainer}> 
               <ScrollView>
                 {searchCard01.map(dat =>
                   <SearchCard key={dat.text} imageUrl={dat.imageUrl} text={dat.text} backgroundColor={dat.backgroundColor} />
